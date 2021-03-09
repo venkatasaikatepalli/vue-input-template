@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <div class="width-label tag-input">
-      <div v-for="(tag, index) in inputValue" :key="tag" class="tag-input__tag">
-        {{ tag }} &nbsp; <span @click="removeTag(index)" class="fa fa-times"></span>
-      </div>
-      <input type="text" :placeholder="`Enter a ${selectLabel||'Tag'}`" @keydown.enter="addTag" 
-      @keydown.188="addTag" @keydown.delete="removeLastTag" class="tag-input__text"/>
+  <div class="input-tags-block">
+    <div v-for="(tag, index) in inputValue" :key="tag" class="input-tags">
+      {{ tag }} &nbsp; <span @click="removeTag(index)" class="fa fa-times"></span>
     </div>
+    <input type="text" :placeholder="`Enter a ${selectLabel||'Tag'}`" @keydown.enter="addTag" 
+    @keydown.188="addTag" @keydown.delete="removeLastTag" class="input-tags-input"/>
   </div>
 </template>
 <script>
@@ -17,7 +15,6 @@ export default {
     }
   },
   created() {
-    console.log(this.selectLabel);
     this.inputValue = this.value || [];
   },
   watch: {
@@ -78,32 +75,29 @@ export default {
   },
 }
 </script>
-<style scoped>
-.tag-input {
-  width: 100%;
-  font-size: 0.9em;
-  min-height: 50px;
-  box-sizing: border-box;
-}
-.tag-input__tag {
-  height: 30px;
-  float: left;
-  margin-right: 10px;
-  background-color: #eee;
-  margin-bottom: 10px;
-  line-height: 30px;
-  padding: 0 5px;
-  border-radius: 0px;
-}
-.tag-input__tag > span {
-  cursor: pointer;
-  opacity: 0.75;
-}
-.tag-input__text {
-  border: none;
-  outline: none;
-  /* font-size: 0.9em; */
-  /* line-height: 50px; */
-  background: none;
-}
+<style lang="stylus" scoped>
+.input-tags-block
+  width 100%
+  font-size 14px
+  min-height 50px
+  box-sizing border-box
+.input-tags
+  float left
+  padding 3px 7px
+  color #000
+  margin 0px 10px 10px 0px
+  font-size 14px
+  border-radius 3px
+  background-color #ffe0e0
+  span
+    cursor pointer
+    margin-left 5px
+    opacity 0.75
+    color #f00
+.input-tags-input
+  border none
+  outline none
+  background none
+  font-size 14px
+  padding 7px
 </style>
