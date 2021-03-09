@@ -1,0 +1,27 @@
+{
+  "name": "vue-input-template",
+  "version": "1.0.0",
+  "description": "Vue Input Template for Multiple input boxes",
+  "main": "src/InputField.vue",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venkatasaikatepalli/vue-input-template.git"
+  },
+  "keywords": [
+    "vue-input-template",
+    "venkatasaikatepalli"
+  ],
+  "author": "Venkata Sai Katepalli <venkatasaikatepalli@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/venkatasaikatepalli/vue-input-template/issues"
+  },
+  "homepage": "https://github.com/venkatasaikatepalli/vue-input-template#readme",
+  "dependencies": {
+    "vee-validate": "^3.4.5",
+    "vuejs-datepicker": "^1.6.2"
+  }
+}
