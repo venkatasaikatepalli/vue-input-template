@@ -1,5 +1,5 @@
 <template>
-  <div class="input-block" :class="disable === 'true' ? 'blur-bg' : ''">
+  <div class="vue-input-template" :class="disable === 'true' ? 'blur-bg' : ''">
     <ValidationProvider :name="name" :rules="rules" v-slot="{ errors }">
       <label v-if="showLabel" :for="name"> {{ label }}</label>
       <div class="input-field" :class="errors[0] || error ? 'error-border' : ''">
@@ -66,7 +66,6 @@
                 :value="defaultValue"
                 v-model="defaultValue"
               ></h-select>
-              <!-- <div class="tele-span">{{ defaultValue }}</div> -->
               <input
                 style="padding-left: 10px"
                 autocomplete="false"
@@ -83,7 +82,7 @@
             </div>
           </template>
           <template v-else-if="type === 'password'">
-            <div style="position:relative;">
+            <div class="input-field-layer">
               <input
                 :class="errors[0] === 'ErrorBlock'"
                 autocomplete="false"
@@ -118,7 +117,7 @@
             @blur="setBlur"
           />
         </div>
-        <div v-else style="color:#ddd">
+        <div v-else class="disabled-text">
           {{ value || "Select" }}
         </div>
       </div>
@@ -131,6 +130,7 @@ import HSelect from "./Select";
 import InputTag from "./InputTag";
 import { localize } from "vee-validate/dist/vee-validate.full";
 import Datepicker from 'vuejs-datepicker'
+import { ValidationProvider } from "vee-validate";
 export default {
   props: {
     type: {
@@ -179,7 +179,7 @@ export default {
       default: false,
     },
   },
-  components: { HSelect, Datepicker, InputTag },
+  components: { HSelect, Datepicker, InputTag, ValidationProvider },
   data() {
     return {
       data: "",
@@ -285,20 +285,40 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-// moved to global style file
-.tele-span {
-  font-size: 1em;
-  width: 50px;
-  line-height: 24px;
-  padding-left: 10px;
-}
-.absolute-eye {
-  position: absolute;
-  right:0;
-  top: 5px;
-  cursor:pointer;
-}
-.absolute-eye img {
-  width: 16px;
-}
+.vue-input-template
+  margin-bottom 2em
+  label
+    width 100%
+    margin 0px
+  .input-field
+    background-color #fff
+    border 1.5px solid #ddd
+    border-radius 3px
+    padding 14px
+    transition 0.2s all ease-in-out
+    .disabled-text
+      color #ddd
+    input, textarea
+      width 100%
+      border none
+      box-shadow none
+      font-size 14px
+      line-height 14px
+      outline none
+      background-color transparent
+      &::placeholder
+        color #666
+    &.error-border
+      border 1.5px solid red
+    .input-field-layer
+      position relative
+      .absolute-eye
+        position absolute
+        right 0
+        top 5px
+        cursor pointer
+        img
+          width 16px
+  &.blur-bg
+    background-color #eee
 </style>

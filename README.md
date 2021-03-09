@@ -1,4 +1,4 @@
-# Vue Inpu Template Search
+# Vue Input Template
 
 A Vue based input box for all type of inputs.
 
@@ -8,9 +8,7 @@ A Vue based input box for all type of inputs.
 
 ## Features
 
-- Search places, areas, address
-- Get current location with geohash code
-- generate your own geohash
+- Input with prevalidations
 
 ## Installing
 
@@ -21,8 +19,6 @@ $ npm install vue-input-template
 ```
 
 ## Example
-
-Generating `Pagination` for Given data
 
 ```js
 // import Vue-input-template module to modules
