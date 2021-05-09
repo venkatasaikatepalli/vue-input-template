@@ -1,6 +1,6 @@
 {
   "name": "vue-input-template",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vue Input Template for Multiple input boxes",
   "main": "src/InputField.vue",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/venkatasaikatepalli/vue-input-template#readme",
   "dependencies": {
-    "vee-validate": "^3.4.5",
+    "vee-validate": "3.0.0",
     "vuejs-datepicker": "^1.6.2"
   }
 }

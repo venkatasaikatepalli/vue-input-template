@@ -6,7 +6,7 @@
         <div v-if="!disable">
           <input
             v-if="type === 'label'"
-            :type="text"
+            type="text"
             :name="name"
             v-model="inputValue"
             :placeholder="label"
@@ -126,11 +126,19 @@
 </template>
 
 <script>
+import { extend } from "vee-validate";
+import * as rules from "vee-validate/dist/rules";
+import { messages } from "vee-validate/dist/locale/en.json";
+import { ValidationProvider } from "vee-validate";
+Object.keys(rules).forEach((rule) => {
+  extend(rule, {
+    ...rules[rule], // copies rule configuration
+    message: messages[rule], // assign message
+  });
+});
 import HSelect from "./Select";
 import InputTag from "./InputTag";
-import { localize } from "vee-validate/dist/vee-validate.full";
 import Datepicker from 'vuejs-datepicker'
-import { ValidationProvider } from "vee-validate";
 export default {
   props: {
     type: {
@@ -189,41 +197,10 @@ export default {
       isFoucs: false,
       errors: [],
       inputValue: null,
-      customMessages: {
-        en: {
-          custom: {
-            Label: {
-              required: "Please enter label name",
-              min: "Atleast minimum 3 characters",
-            },
-            flatno: {
-              required: "Please enter door no",
-              min: "Atleast minimum 3 characters",
-            },
-            street: {
-              required: "Please enter street name",
-              min: "Atleast minimum 3 characters",
-            },
-            city: {
-              required: "Please enter city name",
-              min: "Atleast minimum 3 characters",
-            },
-            pincode: {
-              required: "Please enter pincode",
-              digits: "Atleast minimum 6 characters",
-            },
-            landmark: {
-              required: "Please enter landmark",
-              min: "Atleast minimum 3 characters",
-            },
-          },
-        },
-      },
     };
   },
   created() {
     this.inputValue = this.value;
-    localize("en", this.customMessages);
   },
   methods: {
     initiateAddNewEvent(value) {
