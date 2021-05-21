@@ -21,7 +21,7 @@
             :name="name"
             :rows="rows"
             v-model="inputValue"
-            @input="$emit('input', $event.target.value)"
+            @input="$emit('input', $event.target.value);$emit('change', $event.target.value)"
             :placeholder="label"
             @focus="setFocus"
             @blur="setBlur"
@@ -39,7 +39,7 @@
               :name="name"
               :value="inputValue"
               v-model="inputValue"
-              @input="$emit('input', inputValue)"
+              @input="$emit('input', inputValue);$emit('change', inputValue)"
               @addnew="initiateAddNewEvent"
             ></h-select>
           </template>
@@ -52,7 +52,7 @@
               :name="name"
               :value="inputValue"
               v-model="inputValue"
-              @input="$emit('input', inputValue)"
+              @input="$emit('input', inputValue);$emit('change', inputValue)"
               @addnew="initiateAddNewEvent"
             ></input-tag>
           </template>
@@ -111,7 +111,7 @@
             :rows="rows"
             :cols="cols"
             v-model="inputValue"
-            @input="$emit('input', $event.target.value)"
+            @input="$emit('input', $event.target.value);$emit('change', $event.target.value)"
             :placeholder="label"
             @focus="setFocus"
             @blur="setBlur"
@@ -252,10 +252,12 @@ export default {
     defaultValue: function(newVal, oldVal) {
       this.inputValue = `${newVal} ${this.defaultNumber}`;
       this.$emit('input', this.inputValue);
+      this.$emit('change', this.inputValue);
     },
     defaultNumber: function(newVal, oldVal) {
       this.inputValue = `${this.defaultValue} ${newVal}`;
       this.$emit('input', this.inputValue);
+      this.$emit('change', this.inputValue);
     },
   },
 };
